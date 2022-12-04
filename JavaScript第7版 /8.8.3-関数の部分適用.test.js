@@ -37,3 +37,10 @@ test('部分適用', () => {
     expect(partial(f, undefined, 2)(3, 4)).toBe(-6) // 真ん中の引数をバインドする
     expect(partial(f, undefined, undefined)(3, 2, 4)).toBe(-6) // 真ん中の引数をバインドする
 })
+
+const sum = (x, y) => x + y;
+test('部分適用2', () => {
+    const increment = partialLeft(sum, 1)
+    const cuberoot = partialRight(Math.pow, 1 / 3)
+    expect(cuberoot(increment(26))).toBe(3)
+})
